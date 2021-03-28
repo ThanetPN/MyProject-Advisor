@@ -56,7 +56,10 @@ class GroupController extends Controller
     {
         $groups = Group::find($id);
         // $users = User::find(1)->with('relation_member')->with('relation_group')->get();
-        $users = User::find(Auth::user()->id);
+        $users = User::find(Auth::user()->id)
+            ->where('id', '=', Auth::user()->id)
+            ->with('relation_group')
+            ->get();
         return response()->json($users);
         // return view('group.show', compact('groups', 'users'));
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Group;
 use App\Member;
+use Auth;
 
 class Group extends Model
 {
