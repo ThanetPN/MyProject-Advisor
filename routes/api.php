@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//group
 Route::get('/group/users', 'API\GroupController@get_users');
+
+//topic
+Route::get('/get_select_advisor', 'API\TopicController@get_select_advisor');

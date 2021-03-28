@@ -60,22 +60,39 @@ class GroupController extends Controller
             ->where('id', '=', Auth::user()->id)
             ->with('relation_group')
             ->get();
-        return response()->json($users);
-        // return view('group.show', compact('groups', 'users'));
+
+        $members = Member::where('user_id', '=', Auth::user()->id)
+            ->where('group_id', '=', $id)
+            ->with('relation_users')->get();
+        
+        // return response()->json($members);
+        return view('group.show', compact('groups', 'users', 'members'));
     }
 
     public function add_users(Request $request, $id)
     {
-        $users = User::all()->where('email', '=', $request -> get('add_field'));
-        $data = array();
-        foreach ($users as $key => $value) {
-            array_push($data, $users[$key]);
+        if (isset($_POST['add_method'])) {
+            $users = User::all()->where('email', '=', $request -> get('add_field'));
+            $data = array();
+            foreach ($users as $key => $value) {
+                array_push($data, $users[$key]);
+            }
+            $members = new Member();
+            $members->user_id = Auth::user()->id;
+            $members->member_id = $data[0]->id;
+            $members->group_id = $id;
+            $members->save();
+            return redirect("/group/$id");
         }
-        $members = new Member();
-        $members->user_id = Auth::user()->id;
-        $members->group_id = $id;
-        $members->save();
-        return redirect("/group/$id");
+    }
+
+    public function delete_users(Request $request, $id) {
+        if (isset($_POST['delete_method'])) {
+            $get_id = $request -> get('get_id');
+            $members = Member::find($get_id);
+            $members->delete();
+            return redirect("/group/$members->group_id");
+        }
     }
 
     /**

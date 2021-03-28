@@ -13,8 +13,8 @@ export default {
         this.get_data();
     },
     methods: {
-        get_data () {
-            axios.get('/api/group/users').then(response => {
+        async get_data () {
+            await axios.get('/api/group/users').then(response => {
                 this.items = response.data;
             });
         }

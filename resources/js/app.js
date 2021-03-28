@@ -23,6 +23,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('search-group-component', require('./components/group/SearchComponent.vue').default);
 
+Vue.component('select-topic-advisor-component', require('./components/topic/SelectAdvisorComponent.vue').default);
+Vue.component('add-topic-git-component', require('./components/topic/AddGitComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
