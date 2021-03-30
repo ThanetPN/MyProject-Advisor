@@ -11,7 +11,7 @@
                     {{ csrf_field() }}
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('Topic') }}</label>
     
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="project_name" required autofocus>
@@ -21,7 +21,7 @@
                         <select-topic-advisor-component></select-topic-advisor-component>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Date create') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('Deadline') }}</label>
                             
                             <div class="col-md-6">
                                 <input type="date" class="form-control" name="date_create" required>

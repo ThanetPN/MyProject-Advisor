@@ -19,13 +19,24 @@ class MyGroupController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function get_group () {
         $members = Member::where('member_id', '=', Auth::user()->id)
             ->with('relation_group')
             ->get();
 
-        // return response()->json($members);
-        return view('my_group.my_group', compact('members'));
+        $groups = Group::WhereHas('relation_member', function ($q) {
+            $q->where('member_id', '=', Auth::user()->id);
+        })
+            ->with('relation_topic')
+            ->get();
+
+        // return response()->json($groups);
+        return view('my_group.my_group', compact('members', 'groups'));
     }
 
     public function link_git($id) {
@@ -69,7 +80,7 @@ class MyGroupController extends Controller
         }
 
         $fetures->save();
-        return redirect("/my_group/$id");
+        return redirect("/group");
     }
 
     /**
@@ -106,7 +117,7 @@ class MyGroupController extends Controller
     {
         $fetures = Feture::find($id);
         $fetures->update($request -> all());
-        return redirect("/my_group/$fetures->topic_id");
+        return redirect("/group");
     }
 
     /**
@@ -119,6 +130,6 @@ class MyGroupController extends Controller
     {
         $fetures = Feture::find($id);
         $fetures->delete();
-        return redirect("/my_group/$fetures->topic_id");
+        return redirect("/group");
     }
 }

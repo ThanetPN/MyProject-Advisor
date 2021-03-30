@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Group;
 use App\Member;
+use App\Topic;
+use App\Feture;
 use Auth;
 
 class GroupController extends Controller
@@ -16,9 +18,20 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $groups = Group::all()->where('user_id', '=', Auth::user()->id);
+        $groups = Group::with('relation_member')
+            ->with('relation_topic')
+            ->where('user_id', '=', Auth::user()->id)
+            ->get();
+
+        // return response()->json($groups);
         return view('group.index', compact('groups'));
     }
 
@@ -82,7 +95,7 @@ class GroupController extends Controller
             $members->member_id = $data[0]->id;
             $members->group_id = $id;
             $members->save();
-            return redirect("/group/$id");
+            return redirect("/group");
         }
     }
 

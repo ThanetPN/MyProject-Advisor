@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Feture;
+
 class Topic extends Model
 {
     protected $fillable = [
@@ -13,4 +15,9 @@ class Topic extends Model
         'project_name',
         'date_create',
     ];
+
+    public function relation_feture() 
+    {
+        return $this->hasMany(Feture::class);
+    }
 }

@@ -15,6 +15,12 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($id)
     {
         $topics = Topic::all()
@@ -60,7 +66,7 @@ class TopicController extends Controller
             $link_gits->save();
         }
 
-        return redirect("/topic/$id");
+        return redirect("/group");
     }
 
     /**

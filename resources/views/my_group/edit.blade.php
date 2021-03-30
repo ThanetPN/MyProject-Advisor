@@ -5,13 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Create feture') }}</div>
+                    <div class="card-header">{{ __('Create topic') }}</div>
 
                     <form action="{{url("/my_group/$fetures->id/edit")}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @method('PUT')
                         <div class="form-group row mt-4">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('Topic') }}</label>
     
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="title" value="{{$fetures->title}}" required>
@@ -51,7 +51,7 @@
                         </div>
     
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Date create') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('Deadline') }}</label>
     
                             <div class="col-md-6">
                                 <input class="form-control" type="date" name="date_create" value="{{$fetures->date_create}}" required />

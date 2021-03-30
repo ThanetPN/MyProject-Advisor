@@ -11,7 +11,7 @@
                     {{ csrf_field() }}
                     <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('Project name') }}</label>
     
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="title" required autofocus>

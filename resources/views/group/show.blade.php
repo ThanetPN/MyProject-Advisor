@@ -20,7 +20,7 @@
 
     <br>
 
-    <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Member in group') }}</div>
@@ -46,7 +46,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 @endsection
