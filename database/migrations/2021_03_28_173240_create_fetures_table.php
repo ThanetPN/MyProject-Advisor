@@ -16,6 +16,7 @@ class CreateFeturesTable extends Migration
         Schema::create('fetures', function (Blueprint $table) {
             $table->id();
             $table->integer('topic_id');
+            $table->integer('group_id');
             $table->string('title');
             $table->longText('content');
             $table->string('status');

@@ -31,8 +31,11 @@ class Group extends Model
 
     public function relation_topic() 
     {
-        $get_data = $this->hasOne(Topic::class, 'group_id', 'id')
-            ->with('relation_feture');
+        // $get_data = $this->hasOne(Topic::class, 'group_id', 'id')
+        //     ->with('relation_feture');
+
+        $get_data = $this->hasMany(Feture::class, 'group_id', 'id');
+
         return $get_data;
     }
 }

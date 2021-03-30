@@ -8,6 +8,7 @@ class Feture extends Model
 {
     protected $fillable = [
         'topic_id',
+        'group_id',
         'title',
         'content',
         'date_create',

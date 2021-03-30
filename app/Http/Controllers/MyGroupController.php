@@ -70,6 +70,7 @@ class MyGroupController extends Controller
     {
         $fetures = new Feture($request -> all());
         $fetures->topic_id = $id;
+        $fetures->group_id = $id;
         $fetures->title = $request -> get('title');
         $fetures->content = $request -> get('content');
         $fetures->status = $request -> get('status');
