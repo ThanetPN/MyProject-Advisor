@@ -25,18 +25,15 @@ class MyGroupController extends Controller
     }
 
     public function get_group () {
-        $members = Member::where('member_id', '=', Auth::user()->id)
-            ->with('relation_group')
-            ->get();
-
-        $groups = Group::WhereHas('relation_member', function ($q) {
-            $q->where('member_id', '=', Auth::user()->id);
-        })
+        $groups = Group::WhereHas('relation_member')
             ->with('relation_topic')
+            ->WhereHas('relation_member', function ($member) {
+                $member->where('member_id', '=', Auth::user()->id);
+            })
             ->get();
 
-        // return response()->json($groups);
-        return view('my_group.my_group', compact('members', 'groups'));
+        //return response()->json($groups);
+        return view('my_group.my_group', compact('groups'));
     }
 
     public function link_git($id) {

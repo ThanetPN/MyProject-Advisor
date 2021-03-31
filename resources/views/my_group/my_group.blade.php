@@ -56,8 +56,13 @@
                                 </div>
 
                                 <div class="col-md-6" align='right'>
-                                    <a class='btn btn-warning' href="{{ url("/my_group" . '/' . $item->relation_topic->id . "/create") }}">Topic</a>
-                                    <a class="btn btn-danger" href="{{ url("/group/$item->id") }}">Add member in group</a>
+                                    <form action="{{url("/group/$item->id")}}" method="post">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                        <a class='btn btn-warning' href="{{ url("/my_group" . '/' . $item->id . "/create") }}">Topic</a>
+                                        <a class="btn btn-success" href="{{ url("/group/$item->id") }}">Add member in group</a>
+                                        <button class="btn btn-danger" type="submit">Delete group</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +90,7 @@
                                     <th>Action</th>
                                 </tr>
                                 
-                                @foreach ($item->relation_topic->relation_feture as $item1)
+                                @foreach ($item->relation_topic as $item1)
                                     <tr align='center'>
                                         <td>{{$item1->title}}</td>
                                         <td>{{$item1->status}}</td>
